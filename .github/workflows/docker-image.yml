@@ -14,5 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Pull the Docker image
+    - name: Pull the Docker Images
       run: docker pull gcr.io/ml-pipeline/api-server:2.0.0-alpha.3
+    - name: Login to DockerHub
+      run: docker login docker.io -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+    - name: Tag the Docker Images
+      run: docker tag gcr.io/ml-pipeline/api-server:2.0.0-alpha.3 docker.io/$DOCKERHUB_USERNAME/gcr.io/ml-pipeline/api-server:2.0.0-alpha.3
+    - name: Push the Docker Images
+      run: docker push docker.io/$DOCKERHUB_USERNAME/gcr.io/ml-pipeline/api-server:2.0.0-alpha.3
