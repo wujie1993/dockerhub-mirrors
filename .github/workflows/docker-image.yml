@@ -22,6 +22,6 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
     - name: Tag the Docker Images
-      run: docker tag gcr.io/ml-pipeline/api-server:2.0.0-alpha.3 docker.io/${{ secrets.DOCKERHUB_USERNAME }}/Z2NyLmlvL21sLXBpcGVsaW5lL2FwaS1zZXJ2ZXI=:2.0.0-alpha.3
+      run: docker tag gcr.io/ml-pipeline/api-server:2.0.0-alpha.3 docker.io/${{ secrets.DOCKERHUB_USERNAME }}/gcr.io\ml-pipeline\api-server:2.0.0-alpha.3
     - name: Push the Docker Images
-      run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/Z2NyLmlvL21sLXBpcGVsaW5lL2FwaS1zZXJ2ZXI=:2.0.0-alpha.3
+      run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/gcr.io\ml-pipeline\api-server:2.0.0-alpha.3
