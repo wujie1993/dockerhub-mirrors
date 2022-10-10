@@ -6,3 +6,4 @@ echo "pulling $image"
 docker pull docker.io/vivalavida/${image//\//}
 docker tag docker.io/vivalavida/${image//\//} ${image}
 docker rmi docker.io/vivalavida/${image//\//}
+echo "pulled $image"
