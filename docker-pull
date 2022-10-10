@@ -1,0 +1,8 @@
+#!/bin/sh
+
+image=$1
+
+echo "pulling $image"
+docker pull docker.io/vivalavida/${image//\//}
+docker tag docker.io/vivalavida/${image//\//} ${image}
+docker rmi docker.io/vivalavida/${image//\//}
