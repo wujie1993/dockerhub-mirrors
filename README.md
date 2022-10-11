@@ -23,6 +23,7 @@ vim docker-images.list
 ```
 git add docker-images.list
 git commit -s -m"update docker image list"
+git push origin
 ```
 
 4. 等待 Github Action 运行完毕
