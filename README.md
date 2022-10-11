@@ -1,33 +1,34 @@
 # mirrors
 
+## 同步 Docker 镜像
+
 利用 Github Actions 拉取外网镜像并推送至本地仓库
 
-## 拉取镜像
-
-1. 下载拉取脚本
+1. 下载脚本
 
 ```
-wget https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull && chmod +x docker-pull
+git clone git@github.com:wujie1993/mirrors.git
 ```
 
-2. 拉取镜像
+2. 编辑 docker-images.list 文件，填入需要同步的镜像列表，每条镜像记录一行
 
 ```
-./docker-pull gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.3
+vim docker-images.list
 ```
 
-> 如果镜像不存在，可将待同步的镜像列表提交到 docker-images.list 文件中，触发 docker.io 镜像同步
+> 可通过 # 前缀注释不需要同步的镜像记录，节约镜像同步时间
 
-## 推送镜像
-
-1. 下载推送脚本
+3. 提交 docker-images.list 文件更新内容至本仓库
 
 ```
-wget https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-push && chmod +x docker-push
+git add docker-images.list
+git commit -s -m"update docker image list"
 ```
 
-2. 推送镜像至本地仓库
+4. 等待 Github Action 运行完毕
+
+5. 拉取镜像并推送至本地仓库
 
 ```
-./docker-push <127.0.0.1:5000>
+sh ./docker-push <127.0.0.1:5000>
 ```
