@@ -2,7 +2,7 @@
 
 ## 同步 Docker 镜像
 
-利用 Github Actions 拉取外网镜像并推送至本地仓库
+利用 Github Actions 拉取外网(如：gcr.io)镜像并推送至本地仓库
 
 1. 下载脚本
 
