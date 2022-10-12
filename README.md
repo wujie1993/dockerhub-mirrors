@@ -31,5 +31,5 @@ git push origin
 5. 拉取镜像并推送至本地仓库
 
 ```
-sh ./docker-push <127.0.0.1:5000>
+sh ./docker-sync <127.0.0.1:5000>
 ```
