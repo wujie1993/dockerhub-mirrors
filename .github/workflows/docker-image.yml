@@ -26,8 +26,9 @@ jobs:
         cat docker-images.list | grep -v "^\#" | while read line
         do
           image_name=${line%:*}
+          base64_image_name=$(echo image_name | base64)
           image_tag=${line##*:}
-          docker tag ${line} docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${image_name}:${image_tag}
+          docker tag ${line} docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${base64_image_name}:${image_tag}
         done
         docker images
     #- name: Push the Docker Images
