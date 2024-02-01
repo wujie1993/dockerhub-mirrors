@@ -9,6 +9,8 @@ curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -O doc
 sh ./docker-pull <image>
 ```
 
+> 可拉取的镜像清单见 docker-images.list 文件
+
 ## 同步 Docker 镜像到 dockerhub
 
 1. 下载脚本
