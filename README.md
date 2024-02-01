@@ -1,8 +1,8 @@
 # mirrors
 
-利用 Github Actions 将外网(如：gcr.io)镜像同步到 dockerhub
+利用 Github Actions 将外网(如：gcr.io)镜像同步到 dockerhub，再将镜像拉取至本地
 
-## 快速拉取镜像
+## 快速拉取镜像到本地
 
 ```
 curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -O docker-pull
