@@ -1,5 +1,13 @@
 #!/bin/sh
+
+# 定义镜像仓库地址
 docker_registry=docker.io/wujie1993
+
+# 定义退出状态码 
+EXIT_CODE=0
+
+# 状态码信号捕获
+trap 'EXIT_CODE=1' SIGINT SIGTERM
 
 image=$1
 image_name=${image%:*}
@@ -9,5 +17,10 @@ image_tag=${image##*:}
 docker pull ${docker_registry}/${image_name}:${image_tag}
 docker tag ${docker_registry}/${image_name}:${image_tag} ${image}
 docker rmi ${docker_registry}/${image_name}:${image_tag}
+
+if [ $EXIT_CODE -eq 1 ]; then
+  echo "Failed to pull image ${image}"
+  exit 1
+fi
 
 echo "Pulled image ${image}"
