@@ -1,0 +1,13 @@
+#!/bin/sh
+docker_registry=docker.io/wujie1993
+
+image=$1
+image_name=${image%:*}
+image_name=mirror-${image_name//\//-}
+image_tag=${image##*:}
+
+docker pull ${docker_registry}/${image_name}:${image_tag}
+docker tag ${docker_registry}/${image_name}:${image_tag} ${image}
+docker rmi ${docker_registry}/${image_name}:${image_tag}
+
+echo "Pulled image ${image}"
