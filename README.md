@@ -6,10 +6,10 @@
 
 ```
 curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -O docker-pull
-sh ./docker-pull <image>
+sh ./docker-pull <镜像>
 ```
 
-> 可拉取的镜像清单见 docker-images.list 文件
+> 可拉取的镜像清单见 [docker-images.list](https://github.com/wujie1993/mirrors/blob/main/docker-images.list) 文件
 
 ## 同步 Docker 镜像到 dockerhub
 
