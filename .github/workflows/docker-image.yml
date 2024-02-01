@@ -26,7 +26,7 @@ jobs:
         cat docker-images.list | grep -v "^\#" | while read line
         do
           image_name=${line%:*}
-          new_image_name=mirror-${image_name/\//-}
+          new_image_name=mirror-${image_name//\//-}
           image_tag=${line##*:}
           docker tag ${line} docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${new_image_name}:${image_tag}
           docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${new_image_name}:${image_tag}
