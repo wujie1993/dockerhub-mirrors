@@ -1,6 +1,6 @@
 # mirrors
 
-利用 Github Actions 将外网(如：gcr.io)镜像同步到 dockerhub，再将镜像拉取至本地
+利用 Github Actions 将外网仓库(如：registry.k8s.io)镜像同步到 [dockerhub](https://hub.docker.com/repositories/wujie1993)，再将镜像拉取至本地
 
 ## 快速拉取镜像到本地
 
