@@ -1,8 +1,15 @@
 # mirrors
 
-## 同步 Docker 镜像
+利用 Github Actions 将外网(如：gcr.io)镜像同步到 dockerhub
 
-利用 Github Actions 拉取外网(如：gcr.io)镜像并推送至本地仓库
+## 拉取镜像到本地
+
+```
+curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -O docker-pull
+sh ./docker-pull <image>
+```
+
+## 配置要同步的 Docker 镜像
 
 1. 下载脚本
 
@@ -27,9 +34,3 @@ git push origin
 ```
 
 4. 等待 Github Action 运行完毕
-
-5. 拉取镜像并推送至本地仓库
-
-```
-sh ./docker-sync <127.0.0.1:5000>
-```
