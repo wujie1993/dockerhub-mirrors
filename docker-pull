@@ -1,37 +1,57 @@
 #!/bin/bash
 
+# 定义容器引擎，可选值: docker, containerd
+container_engine=docker
+
+# 定义镜像仓库地址
+docker_registry=docker.io/wujie1993
+
+# 定义退出状态码 
+EXIT_CODE=0
+
+# 状态码信号捕获
+trap 'EXIT_CODE=1' SIGINT SIGTERM
+
+case $container_engine in
+  "docker")
+    pull_cmd="docker pull"
+    tag_cmd="docker tag"
+    rmi_cmd="docker rmi"
+    ;;
+  "containerd")
+    pull_cmd="ctr image pull"
+    tag_cmd="ctr image tag"
+    rmi_cmd="ctr image rm"
+    ;;
+esac
+
 pull_image() {
-  # 定义退出状态码 
-  EXIT_CODE=0
-
-  # 状态码信号捕获
-  trap 'EXIT_CODE=1' SIGINT SIGTERM
-
   image=$1
   image_name=${image%:*}
   image_name=mirror-${image_name//\//-}
   image_tag=${image##*:}
 
-  docker pull ${docker_registry}/${image_name}:${image_tag}
-  docker tag ${docker_registry}/${image_name}:${image_tag} ${image}
-  docker rmi ${docker_registry}/${image_name}:${image_tag}
-
-  if [ $EXIT_CODE -eq 1 ]; then
-    echo "Failed to pull image ${image}"
-    exit 1
-  fi
+  ${pull_cmd} ${docker_registry}/${image_name}:${image_tag}
+  ${tag_cmd} ${docker_registry}/${image_name}:${image_tag} ${image}
+  ${rmi_cmd} ${docker_registry}/${image_name}:${image_tag}
 
   echo "Pulled image ${image}"
 }
-
-# 定义镜像仓库地址
-docker_registry=docker.io/wujie1993
 
 if [ -z "$1" ]; then
   cat docker-images.list | grep -v "^#" | while read image
   do
     pull_image $image
+
+    if [ $EXIT_CODE -eq 1 ]; then
+      echo "Failed to pull image ${image}"
+      exit 1
+    fi
   done
 else
   pull_image $1
+  if [ $EXIT_CODE -eq 1 ]; then
+    echo "Failed to pull image ${image}"
+    exit 1
+  fi
 fi
