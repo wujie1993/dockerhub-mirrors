@@ -6,7 +6,8 @@
 
 ```
 curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -o docker-pull
-sh ./docker-pull <镜像>
+chmod +x docker-pull
+./docker-pull <镜像>
 ```
 
 > 可拉取的镜像清单见 [docker-images.list](https://github.com/wujie1993/mirrors/blob/main/docker-images.list) 文件
@@ -40,12 +41,12 @@ git push origin
 ## 拉取单个镜像到本地
 
 ```
-sh ./docker-pull <image>
+bash ./docker-pull <image>
 ```
 
 ## 批量拉取镜像到本地
 
 ```
 # 编辑 docker-images.list 移除所要拉取镜像的注释符号
-sh ./docker-pull
+bash ./docker-pull
 ```
