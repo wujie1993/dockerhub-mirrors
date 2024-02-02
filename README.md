@@ -5,7 +5,7 @@
 ## 快速拉取镜像到本地
 
 ```
-curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -O docker-pull
+curl https://raw.githubusercontent.com/wujie1993/mirrors/main/docker-pull -o docker-pull
 sh ./docker-pull <镜像>
 ```
 
